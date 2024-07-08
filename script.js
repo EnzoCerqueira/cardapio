@@ -8,6 +8,7 @@ const closeModalBtn = document.getElementById("close-modal-btn")
 const cartCounter = document.getElementById("cart-count")
 const addressInput = document.getElementById("address")
 const addressWarn = document.getElementById("address-warn")
+const ObsInput = document.getElementById("obs")
 
 let cart = [];
 
@@ -141,6 +142,10 @@ addressInput.addEventListener("input", function(event){
     }
 })
 
+ObsInput.addEventListener("input", function(event){
+    inputValue();
+})
+
 //finalizar pedido
 checkoutBtn.addEventListener("click", function(){
 
@@ -180,7 +185,7 @@ checkoutBtn.addEventListener("click", function(){
     const message = encodeURIComponent(cartItems)
     const phone = "77998565569"
 
-    window.open(`https://wa.me/${phone}?text=${message} Endereço: ${addressInput.value}`, "_blank")
+    window.open(`https://wa.me/${phone}?text=${message} Endereço: ${addressInput.value} | OBS: ${ObsInput.value} `, "_blank")
 
     cart = [];
     updateCartModal();
@@ -190,7 +195,7 @@ checkoutBtn.addEventListener("click", function(){
 function checkRestaurantOpen(){
     const data = new Date();
     const hora = data.getHours();
-    return hora >= 18 && hora < 22; //true - restaurante aberto
+    return hora >= 11 && hora < 22; //true - restaurante aberto
 }
 
 const spanItem = document.getElementById("date-span")
